@@ -9,7 +9,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.locks.StampedLock;
-import java.util.stream.LongStream;
 
 import com.developpez.lmauzaize.java.concurrence.Logger;
 
@@ -43,14 +42,14 @@ class CompteBancaire {
 final CompteBancaire compte = new CompteBancaire();
 
 
-Runnable curieu = () -> {
+Runnable curieux = () -> {
   while (true) {
     compte.consulter();
     Thread.yield();
   }
 };
 for (int i = 0; i < 2; i++) {
-  Thread thread = new Thread(curieu, "Curieux-" + i);
+  Thread thread = new Thread(curieux, "Curieux-" + i);
   thread.setDaemon(true);
   thread.start();
 }
